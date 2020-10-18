@@ -33,9 +33,8 @@ public class InstructorDetail {
 	@Column(name="hobby")
 	private String hobby;
 	
-	public InstructorDetail(int id, String youtubechannel, String hobby) {
+	public InstructorDetail( String youtubechannel, String hobby) {
 		super();
-		this.id = id;
 		this.youtubechannel = youtubechannel;
 		this.hobby = hobby;
 	}
