@@ -30,6 +30,7 @@ public class Instructor {
 	private String lastName;
 	@Column(name="email")
 	private String email;
+	
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="instructor_detail_id")
 	private InstructorDetail instructorDetail; 
@@ -37,7 +38,7 @@ public class Instructor {
 	public Instructor() {
 		// TODO Auto-generated constructor stub
 	}
-	public Instructor(String firstName, String lastName, String email, String instructorDetailId) {
+	public Instructor(String firstName, String lastName, String email) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -73,6 +74,9 @@ public class Instructor {
 	public String toString() {
 		return "Instructor [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ "]";
+	}
+	public void setInstructorDetail(InstructorDetail tempInstructorDetail) {
+		this.instructorDetail= tempInstructorDetail;
 	}
 	
 }
