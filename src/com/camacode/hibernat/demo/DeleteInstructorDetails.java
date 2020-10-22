@@ -8,7 +8,7 @@ import com.camacode.hibernat.demo.entity.Instructor;
 import com.camacode.hibernat.demo.entity.InstructorDetail;
 import com.camacode.hibernat.demo.entity.Student;
 
-public class GetInstructorDetailsDemo {
+public class DeleteInstructorDetails {
 
 	public static void main(String[] args) {
 		
@@ -27,11 +27,15 @@ public class GetInstructorDetailsDemo {
 			System.out.println("Begin transaction .... ");
 			session.beginTransaction();
 			
-			int theId =33 ;  
+			int theId =3 ;  
 			InstructorDetail tempInstructorDetail = session.get(InstructorDetail.class, theId);
 			System.out.println("tempInstructorDetail: "+tempInstructorDetail);
 			
 			System.out.println("the associated Instructor: "+tempInstructorDetail.getInstructor());
+			
+			//Deleting the instructor details ...
+			System.out.println("Deleting: "+tempInstructorDetail.getInstructor());
+			session.delete(tempInstructorDetail);
 			
 			//commit transaction
 			session.getTransaction().commit();
