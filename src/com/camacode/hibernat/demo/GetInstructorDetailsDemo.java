@@ -8,7 +8,7 @@ import com.camacode.hibernat.demo.entity.Instructor;
 import com.camacode.hibernat.demo.entity.InstructorDetail;
 import com.camacode.hibernat.demo.entity.Student;
 
-public class CreateDemo {
+public class GetInstructorDetailsDemo {
 
 	public static void main(String[] args) {
 		
@@ -23,28 +23,19 @@ public class CreateDemo {
 		Session session = factory.getCurrentSession();
 		
 		try {
-			//create the object 
 			
-			Instructor tempInstructor = new Instructor
-					("zerrouki","zerrouki","sofiane@gmail.com");
-			InstructorDetail tempInstructorDetail = new InstructorDetail
-					("https://www.youtube.com/sofiane","java");
-			tempInstructor.setInstructorDetail(tempInstructorDetail);
-			
-			//Begin transaction 
 			System.out.println("Begin transaction .... ");
 			session.beginTransaction();
 			
-			//save the Instructor object
-			//
-			//Note: this will also save the details 
-			//because of Cascade.ALl
-			//
-			//
-			session.save(tempInstructor);
+			int theId =3 ;  
+			InstructorDetail tempInstructorDetail = session.get(InstructorDetail.class, theId);
+			System.out.println("tempInstructorDetail: "+tempInstructorDetail);
+			
+			System.out.println("the associated Instructor: "+tempInstructorDetail.getInstructor());
 			
 			//commit transaction
 			session.getTransaction().commit();
+
 			System.out.println("Done !");
 
 		} 
