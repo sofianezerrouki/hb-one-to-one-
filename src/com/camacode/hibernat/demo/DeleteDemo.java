@@ -23,35 +23,27 @@ public class DeleteDemo {
 		Session session = factory.getCurrentSession();
 		
 		try {
-			//create the object 
-			/*
-			Instructor tempInstructor = new Instructor
-								("anoire","djilali","anoire@gmail.com");
-			InstructorDetail tempInstructorDetail = new InstructorDetail
-								("https://www.youtube.com/zerroukisofiane","football");
-			*/
-			//	associte the objects 
 			
-			Instructor tempInstructor = new Instructor
-					("djamel","zerrouki","djq;el@gmail.com");
-			InstructorDetail tempInstructorDetail = new InstructorDetail
-					("https://www.youtube.com/djamel","music");
-			tempInstructor.setInstructorDetail(tempInstructorDetail);
 			
-			//Begin transaction 
 			System.out.println("Begin transaction .... ");
 			session.beginTransaction();
 			
-			//save the Instructor object
-			//
-			//Note: this will also save the details 
-			//because of Cascade.ALl
-			//
-			//
-			session.save(tempInstructor);
+			//get the instructor by id 
+			int theId = 4;
+			Instructor tempInstructor = session.get(Instructor.class,theId);
+			System.out.println("found the instructor : "+tempInstructor);
+			//delete the Instructors
+			if (tempInstructor!=null) {
+				System.out.println("Deleting the instructor : "+tempInstructor);
+				
+				//this will also delete the details objects
+				session.delete(tempInstructor);
+				//commit transaction
+				session.getTransaction().commit();
+			}else {
+				System.out.println("Instructor not found !!!!!!!");
+			}
 			
-			//commit transaction
-			session.getTransaction().commit();
 			System.out.println("Done !");
 
 		} 
