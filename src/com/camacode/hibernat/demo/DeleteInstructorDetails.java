@@ -27,7 +27,7 @@ public class DeleteInstructorDetails {
 			System.out.println("Begin transaction .... ");
 			session.beginTransaction();
 			
-			int theId =3 ;  
+			int theId =4 ;  
 			InstructorDetail tempInstructorDetail = session.get(InstructorDetail.class, theId);
 			System.out.println("tempInstructorDetail: "+tempInstructorDetail);
 			
@@ -35,6 +35,7 @@ public class DeleteInstructorDetails {
 			
 			//Deleting the instructor details ...
 			System.out.println("Deleting: "+tempInstructorDetail.getInstructor());
+			tempInstructorDetail.getInstructor().setInstructorDetail(null);
 			session.delete(tempInstructorDetail);
 			
 			//commit transaction
